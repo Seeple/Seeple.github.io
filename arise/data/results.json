@@ -1,0 +1,155 @@
+{
+  "manage_table": {
+    "rollouts": 60,
+    "methods": {
+      "Base Policy": {
+        "0": {
+          "percent": 6.7,
+          "successes": 4
+        }
+      },
+      "ARISE + FT": {
+        "1": {
+          "percent": 81.7,
+          "successes": 49
+        },
+        "2": {
+          "percent": 93.3,
+          "successes": 56
+        }
+      },
+      "ARISE + Residual": {
+        "1": {
+          "percent": 80.0,
+          "successes": 48
+        },
+        "2": {
+          "percent": 86.7,
+          "successes": 52
+        }
+      },
+      "HG-DAgger": {
+        "1": {
+          "percent": 68.3,
+          "successes": 41
+        },
+        "2": {
+          "percent": 81.7,
+          "successes": 49
+        }
+      },
+      "Sirius": {
+        "1": {
+          "percent": 41.7,
+          "successes": 25
+        },
+        "2": {
+          "percent": 45.0,
+          "successes": 27
+        }
+      }
+    }
+  },
+  "cable_routing": {
+    "rollouts": 60,
+    "methods": {
+      "Base Policy": {
+        "0": {
+          "percent": 5.0,
+          "successes": 3
+        }
+      },
+      "ARISE + FT": {
+        "1": {
+          "percent": 78.3,
+          "successes": 47
+        },
+        "2": {
+          "percent": 95.0,
+          "successes": 57
+        }
+      },
+      "ARISE + Residual": {
+        "1": {
+          "percent": 81.7,
+          "successes": 49
+        },
+        "2": {
+          "percent": 91.7,
+          "successes": 55
+        }
+      },
+      "HG-DAgger": {
+        "1": {
+          "percent": 70.0,
+          "successes": 42
+        },
+        "2": {
+          "percent": 80.0,
+          "successes": 48
+        }
+      },
+      "Sirius": {
+        "1": {
+          "percent": 61.7,
+          "successes": 37
+        },
+        "2": {
+          "percent": 70.0,
+          "successes": 42
+        }
+      }
+    }
+  },
+  "hang_chinese_knot": {
+    "rollouts": 40,
+    "methods": {
+      "Base Policy": {
+        "0": {
+          "percent": 20.0,
+          "successes": 8
+        }
+      },
+      "ARISE + FT": {
+        "1": {
+          "percent": 57.5,
+          "successes": 23
+        },
+        "2": {
+          "percent": 87.5,
+          "successes": 35
+        }
+      },
+      "ARISE + Residual": {
+        "1": {
+          "percent": 67.5,
+          "successes": 27
+        },
+        "2": {
+          "percent": 77.5,
+          "successes": 31
+        }
+      },
+      "HG-DAgger": {
+        "1": {
+          "percent": 40.0,
+          "successes": 16
+        },
+        "2": {
+          "percent": 67.5,
+          "successes": 27
+        }
+      },
+      "Sirius": {
+        "1": {
+          "percent": 50.0,
+          "successes": 20
+        },
+        "2": {
+          "percent": 75.0,
+          "successes": 30
+        }
+      }
+    }
+  }
+}

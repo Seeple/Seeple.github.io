@@ -1,0 +1,12 @@
+{
+  "title": "ARISE: Augmented-Reality Intervention with Action Preview and Spatial Editing for Robot Policy Adaptation",
+  "author_status": "Anonymous Authors",
+  "abstract_latex": "Imitation learning policies usually suffer from covariate shift at deployment---the policy-induced state distribution might drift from the expert training distribution, causing unexpected failures. Human corrections at learner-visited states can help adapt the policy. Traditional takeover-based human intervention, however, often reveals errors only after they unfold and can force operators to replace the policy's predicted actions. We present \\sys{}, a policy-aware augmented-reality human-in-the-loop correction system that, after each policy inference, renders the active action chunk as a spatially registered end-effector trajectory. Before execution resumes, an operator can drag a future waypoint to locally edit the predicted actions. These edits yield executed corrections for data-efficient policy fine-tuning (FT for short) and aligned original--corrected action pairs that support a compact residual predictor over a frozen base policy, enabling parameter-efficient adaptation. Across three real-robot tasks, including long-horizon and precise manipulation tasks, \\sys{} improves mean task success from 10.6\\% for the base policies to 91.9\\% with finetuning and 85.3\\% with residual adaptation within two policy-update rounds. \\sys{} makes policy predictions observable and editable, providing a direct interface for corrective robot policy adaptation.",
+  "claims": {
+    "mean_success_base": 10.6,
+    "mean_success_ft_round2": 91.9,
+    "mean_success_residual_round2": 85.3,
+    "trainable_parameters_ft_millions": 92.81,
+    "trainable_parameters_residual_millions": 1.263
+  }
+}

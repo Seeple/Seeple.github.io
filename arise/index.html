@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f7f4">
+  <meta name="description" content="ARISE makes robot policy predictions observable and editable through augmented-reality action preview and spatial editing.">
+  <title>ARISE · See the plan. Shape the motion.</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23c74e30'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Georgia' font-size='48' fill='white'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#overview">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="ARISE home">ARISE<span class="brand-dot"></span></a>
+    <nav aria-label="Main navigation">
+      <a href="#overview">Overview</a><a href="#method">Method</a><a href="#results">Results</a><a href="#paper">Paper <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap" aria-labelledby="project-title">
+      <p class="eyebrow hero-eyebrow"><span></span> HUMAN-IN-THE-LOOP ROBOT LEARNING</p>
+      <h1 id="project-title"><span class="hero-name">ARISE</span><span class="full-title">Augmented-Reality Intervention with<br class="desktop-break"> Action Preview and Spatial Editing<br class="desktop-break"> for Robot Policy Adaptation</span></h1>
+      <p class="hero-deck">See what the robot will do. Edit what it should do.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="assets/paper/ARISE.pdf" target="_blank" rel="noopener"><span aria-hidden="true">▤</span> Read the paper <span aria-hidden="true">↗</span></a>
+        <button class="button secondary" data-open-film><span class="play-triangle" aria-hidden="true"></span> Watch the film <span class="duration">2:57</span></button>
+      </div>
+      <div class="hero-showcase">
+        <div class="hero-video-wrap">
+          <video id="hero-video" src="assets/video/hero.mp4" poster="assets/images/hero.webp" muted loop playsinline autoplay preload="metadata" data-autoplay aria-label="An operator edits the robot's predicted trajectory in augmented reality"></video>
+          <button class="video-toggle" data-toggle="hero-video" aria-label="Pause preview">Ⅱ</button>
+          <div class="hero-video-tag"><span class="live-dot"></span> Through the AR headset</div>
+        </div>
+        <div class="hero-note">
+          <span class="note-index">THE IDEA / 01</span>
+          <h2>A correction<br> before the<br> <em>failure.</em></h2>
+          <p>ARISE turns a robot’s next actions into a visible, editable trajectory. A local human edit becomes supervision for a better policy.</p>
+          <a class="text-link" href="#method">Explore the interaction <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <p class="media-caption">Real robot. Spatially registered action preview. Corrections made directly on the predicted motion.</p>
+    </section>
+
+    <section id="overview" class="overview wrap section" aria-labelledby="overview-title">
+      <div class="section-label"><span>01</span> OVERVIEW</div>
+      <div class="intro-grid">
+        <h2 id="overview-title">Make policy intent<br> visible. Make corrections<br> <em>local.</em></h2>
+        <div class="prose">
+          <p>Learned robot policies can fail when they encounter states beyond their demonstrations. Human corrections help, but taking over often means reacting after an error and replacing motion that was already useful.</p>
+          <p><strong>ARISE brings the predicted action into the workspace.</strong> An augmented-reality interface displays the active action chunk as a 3D end-effector trajectory. The operator can anticipate an error, pause execution, and drag a future waypoint to repair the motion.</p>
+          <p>Each edit supports two routes to adaptation: fine-tuning from executed corrections, or learning a compact residual from original–corrected action pairs.</p>
+        </div>
+      </div>
+      <div class="headline-results">
+        <div><span class="stat-label">MEAN TASK SUCCESS</span><div class="stat-value"><span class="old-value">10.6</span><span class="stat-arrow">→</span>91.9<span class="stat-unit">%</span></div><p>Base policies → ARISE + fine-tuning</p></div>
+        <div><span class="stat-label">RESIDUAL ADAPTATION</span><div class="stat-value">85.3<span class="stat-unit">%</span></div><p>Mean success with a frozen base policy</p></div>
+        <div><span class="stat-label">REAL-WORLD EVALUATION</span><div class="stat-value">3<span class="stat-unit word">tasks</span><span class="stat-divider">/</span>2<span class="stat-unit word">rounds</span></div><p>Matched correction-episode budgets</p></div>
+      </div>
+      <p class="small-note">Success rates reported in the paper after two policy-update rounds.</p>
+    </section>
+
+    <section id="method" class="method section" aria-labelledby="method-title">
+      <div class="wrap">
+        <div class="section-label"><span>02</span> THE INTERACTION</div>
+        <div class="section-heading"><h2 id="method-title">Preview. Edit. <em>Adapt.</em></h2><p>One interface connects human insight<br>to two forms of policy supervision.</p></div>
+        <div class="method-layout">
+          <div class="method-steps" role="tablist" aria-label="Method steps" aria-orientation="vertical">
+            <button role="tab" id="step-preview" aria-controls="method-panel" aria-selected="true" data-step="preview"><span class="step-number">01</span><span><strong>Preview the next action</strong><span class="step-copy">See the planned trajectory, gripper pose, and opening, registered in the physical workspace.</span></span><span class="step-arrow" aria-hidden="true">↗</span></button>
+            <button role="tab" id="step-edit" aria-controls="method-panel" aria-selected="false" tabindex="-1" data-step="edit"><span class="step-number">02</span><span><strong>Edit the future motion</strong><span class="step-copy">Pause inference and execution. Move a waypoint while preserving the already executed prefix.</span></span><span class="step-arrow" aria-hidden="true">↗</span></button>
+            <button role="tab" id="step-learn" aria-controls="method-panel" aria-selected="false" tabindex="-1" data-step="learn"><span class="step-number">03</span><span><strong>Learn from the correction</strong><span class="step-copy">Use executed corrections for fine-tuning, or paired plans to train a compact residual predictor.</span></span><span class="step-arrow" aria-hidden="true">↗</span></button>
+          </div>
+          <div class="method-panel" id="method-panel" role="tabpanel" aria-labelledby="step-preview" tabindex="0">
+            <div class="method-stage"><video id="method-video" src="assets/video/preview.mp4" poster="assets/images/preview.webp" muted loop playsinline controls preload="metadata" data-autoplay aria-label="Spatial action preview through the headset"></video><img id="method-image" src="assets/images/residual.webp" alt="Residual policy adaptation pipeline from the paper" hidden></div>
+            <p id="method-caption">A calibrated 3D overlay makes the policy’s planned motion visible as the operator changes viewpoint.</p>
+          </div>
+        </div>
+        <div class="learning-routes">
+          <div><span class="route-label">ROUTE A</span><h3>Executed correction → Fine-tuning</h3><p>Train the diffusion policy on human corrections. A contiguous action mask excludes subsequent autonomous actions from online supervision.</p></div>
+          <div><span class="route-label">ROUTE B</span><h3>Paired plans → Residual adaptation</h3><p>Learn the geometric difference between original and edited action chunks while keeping the base policy and observation encoder frozen.</p></div>
+        </div>
+        <details class="figure-details"><summary>See the paper’s system overview <span aria-hidden="true">＋</span></summary><figure><img src="assets/images/teaser.webp" alt="ARISE overview showing spatial intervention, policy adaptation, and recovered policy behavior" loading="lazy"><figcaption>System overview from Figure 1 of the paper.</figcaption></figure></details>
+      </div>
+    </section>
+
+    <section id="results" class="results wrap section" aria-labelledby="results-title">
+      <div class="section-label"><span>03</span> REAL-ROBOT RESULTS</div>
+      <div class="section-heading"><h2 id="results-title">Small corrections.<br><em>Stronger policies.</em></h2><p>From long-horizon sequences to precise placement,<br>ARISE improves adaptation across all three tasks.</p></div>
+      <div class="task-tabs" role="tablist" aria-label="Experimental tasks">
+        <button role="tab" aria-selected="true" aria-controls="task-panel" id="tab-table" data-task="manage_table">01 <span>Manage Table</span></button>
+        <button role="tab" aria-selected="false" aria-controls="task-panel" id="tab-cable" tabindex="-1" data-task="cable_routing">02 <span>Cable Routing</span></button>
+        <button role="tab" aria-selected="false" aria-controls="task-panel" id="tab-knot" tabindex="-1" data-task="hang_chinese_knot">03 <span>Hang Chinese Knot</span></button>
+      </div>
+      <div id="task-panel" class="experiment-layout" role="tabpanel" aria-labelledby="tab-table">
+        <div class="task-demo"><div class="task-video-box"><video id="task-video" src="assets/video/table.mp4" poster="assets/images/table.webp" muted loop playsinline controls preload="metadata" data-autoplay aria-label="Manage Table correction demonstration"></video></div><p><span class="caption-kicker">CORRECTION IN PRACTICE</span><span id="task-description">Place a plate, fork, and spoon in order, including opening a drawer to retrieve the fork.</span></p></div>
+        <div class="chart-panel">
+          <div class="chart-header"><div><span class="caption-kicker">POLICY EVALUATION</span><h3>Task success rate</h3></div><div class="round-toggle" role="group" aria-label="Adaptation round"><button data-round="1" aria-pressed="false">Round 1</button><button data-round="2" aria-pressed="true">Round 2</button></div></div>
+          <div id="success-chart" class="success-chart" role="img" aria-label="Success rates by adaptation method"></div>
+          <div class="chart-axis" aria-hidden="true"><span>0%</span><span>50%</span><span>100%</span></div>
+          <p id="chart-takeaway" class="chart-takeaway" aria-live="polite"></p>
+          <p class="chart-note" id="chart-note">60 evaluation rollouts per method and round. 30 correction episodes per round.</p>
+          <details class="data-details"><summary>View exact counts</summary><table><caption id="counts-caption">Manage Table · round 2</caption><thead><tr><th scope="col">Method</th><th scope="col">Successful / total</th></tr></thead><tbody id="counts-body"></tbody></table></details>
+        </div>
+      </div>
+      <p class="source-note">Base-policy results precede adaptation. All methods use the same per-task correction-episode budget. See Figure 6 and Section IV of the paper.</p>
+    </section>
+
+    <section class="rollouts section" id="rollouts" aria-labelledby="rollouts-title">
+      <div class="wrap">
+        <div class="section-label"><span>04</span> POLICY BEHAVIOR</div>
+        <div class="section-heading"><h2 id="rollouts-title">Watch the change.</h2><p>Representative rollouts show how adaptation<br>repairs failures across the three tasks.</p></div>
+        <div class="comparison-toolbar"><div class="pill-tabs" role="group" aria-label="Rollout comparison"><button data-comparison="recovery" aria-pressed="true">Base → adapted policies</button><button data-comparison="takeover" aria-pressed="false">Takeover baselines → ARISE</button></div><button class="text-button" id="replay-comparison">↻ Replay</button></div>
+        <div class="comparison-player"><video id="comparison-video" src="assets/video/recovery.mp4" poster="assets/images/recovery.webp" muted playsinline controls preload="metadata" aria-label="Representative base and adapted policy rollouts across three tasks"></video></div>
+        <div class="comparison-footer"><p id="comparison-caption">Base Policy, ARISE + FT, and ARISE + Residual after two rounds. Rows show Cable Routing, Manage Table, and Hang Chinese Knot.</p><div class="outcome-legend"><span><i class="success-dot"></i>Success</span><span><i class="failure-dot"></i>Failure</span></div></div>
+        <div class="behavior-grid">
+          <article><video src="assets/video/one-pass.mp4" poster="assets/images/one-pass.webp" muted loop playsinline controls preload="none" aria-label="Drawer opening comparison between HG-DAgger and ARISE"></video><span class="caption-kicker">FEWER RETRIES</span><h3>Pass the bottleneck on the first attempt.</h3><p>ARISE + FT achieves a higher one-pass rate in all three tasks after one adaptation round, measured among successful rollouts.</p></article>
+          <article><video src="assets/video/smoothness.mp4" poster="assets/images/smoothness.webp" muted loop playsinline controls preload="none" aria-label="Autonomous motion smoothness comparison on Manage Table"></video><span class="caption-kicker">SMOOTHER EXECUTION</span><h3>Reduce unnecessary motion jitter.</h3><p>On Manage Table, adapted policies show 10.2% lower translational RMS jerk, with improved Log-DJ and SPARC, in 15 successful rollouts per method.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="efficiency wrap section" aria-labelledby="efficiency-title">
+      <div class="section-label"><span>05</span> TARGETED SUPERVISION</div>
+      <div class="efficiency-grid"><div><h2 id="efficiency-title">Learn more from<br><em>less intervention.</em></h2><p class="body-copy">Local edits concentrate supervision at the failure. Paired plans also make it possible to adapt a compact residual instead of updating the full diffusion network.</p></div><div class="efficiency-numbers"><div><strong>2.1–3.3<span>×</span></strong><p>as many correction windows collected by teleop takeover as by ARISE, under matched episode budgets.</p></div><div><strong>73.5<span>× fewer</span></strong><p>updated parameters for residual adaptation:<br>1.263M vs. 92.81M for fine-tuning.</p></div></div></div>
+      <p class="small-note">Supervision statistics across all three tasks; parameter comparison from the Cable Routing training-cost study (Tables II–III).</p>
+    </section>
+
+    <section id="paper" class="paper-section section" aria-labelledby="paper-title"><div class="wrap paper-layout">
+      <a class="paper-preview" href="assets/paper/ARISE.pdf" target="_blank" rel="noopener" aria-label="Open the full ARISE paper"><img src="assets/images/paper-cover.webp" alt="First page of the ARISE paper" loading="lazy" width="612" height="792"><span>Read the full paper ↗</span></a>
+      <div class="paper-copy"><div class="section-label"><span>06</span> THE PAPER</div><h2 id="paper-title">See the full picture.</h2><p class="paper-full-title">ARISE: Augmented-Reality Intervention with Action Preview and Spatial Editing for Robot Policy Adaptation</p><p class="body-copy">The paper details the interaction design, correction supervision, three-task evaluation, and ablations of spatial editing and residual learning.</p><div class="paper-links"><a class="button primary" href="assets/paper/ARISE.pdf" target="_blank" rel="noopener">Open paper <span aria-hidden="true">↗</span></a><button class="button secondary" data-open-film>Watch the full video <span aria-hidden="true">▷</span></button></div><p class="paper-meta">Anonymous manuscript · 8 pages</p></div>
+    </div></section>
+  </main>
+
+  <footer class="wrap site-footer"><a class="wordmark" href="#top">ARISE<span class="brand-dot"></span></a><p>Action preview. Spatial editing. Policy adaptation.</p><a href="#top" class="text-link">Back to top ↑</a></footer>
+
+  <dialog id="film-dialog" aria-labelledby="film-title"><div class="dialog-header"><div><span class="caption-kicker">PROJECT VIDEO</span><h2 id="film-title">ARISE in 2 minutes, 57 seconds.</h2></div><button id="close-film" class="close-button" aria-label="Close project video">×</button></div><video id="full-video" src="assets/video/arise-overview.mp4" controls playsinline preload="none" aria-label="Complete ARISE project video with narration"></video></dialog>
+</body>
+</html>
